@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>... Quiz</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row header">
+            <div class="col-3">
+                <a class="btn btn-primary" href="#" role="button">Your Highscores</a>
+            </div>
+            <div class="col-6 text-center">
+                <h2 class="">
+                    Super Fun Quiz Game /s
+                </h2>
+            </div>
+            <div class="col-3">
+                <h3 id="time">
+                    
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 spacer">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Start Section -->
+    <div id="start-screen" class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="screen start-screen text-center">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>Think your brain is as big as Jupiter and faster than light in a vacuum? Let's find out!
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <button type="button" id="start-btn" class="btn btn-primary start-btn">Start Game</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-primary start-btn">View Code</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Screen Section -->
+
+    <div id="quiz-screen" class="hide">
+        <div class="container screen">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center mx-0">
+                        <div class="question-el">
+                            <h1>
+                                About how much USD does a NASA space suit cost?
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="options col-12 text-center">
+                    <h1>Option A</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="options col-12 text-center">
+                    <h1>Option A</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="options col-12 text-center">
+                    <h1>Option A</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="options col-12 text-center">
+                    <h1>Option A</h1>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Answer Section / Footer -->
+        <div class="container-fluid answer-section">
+            <div class="row">
+                <div class="col-12 spacer">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <button id="ansr-btn-a" class="ansr-btns nuetral" type="button">A </n></button>
+                </div>
+
+                <div class="col-6">
+                    <button id="ansr-btn-b" class="ansr-btns nuetral" type="button">B</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <button id="ansr-btn-c" class="ansr-btns correct" type="button">C</button>
+                </div>
+
+                <div class="col-6">
+                    <button id="ansr-btn-d" class="ansr-btns wrong" type="button">D</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 spacer">
+
+                </div>
+            </div>
+            <div class="row bottom ">
+                <div class="col-12 text-center footer">
+                    <h5 id="nametag">Created by Jon Hansen</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
