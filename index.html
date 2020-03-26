@@ -38,7 +38,7 @@
 
 
     <!-- Start Section -->
-    <div id="start-screen" class="container">
+    <div id="start-screen" class="container text-center">
         <div class="row">
             <div class="col-12">
                 <div class="screen start-screen text-center">
@@ -53,7 +53,7 @@
                             <button type="button" id="start-btn" class="btn btn-primary start-btn">Start Game</button>
                         </div>
                         <div class="col-6">
-                            <button type="button" class="btn btn-primary start-btn">View Code</button>
+                            <button onclick="window.location.href = 'google.com';" target="_blank" class="btn btn-primary code-btn">View Code</button>
                         </div>
                     </div>
                 </div>
@@ -75,39 +75,37 @@
 
             <div class="row">
                 <div class="options col-12 text-center">
-                    <h1></h1>
+                    <h1 id="answerA-el"></h1>
                 </div>
             </div>
             <div class="row">
                 <div class="options col-12 text-center">
-                    <h1></h1>
+                    <h1 id="answerB-el"></h1>
                 </div>
             </div>
             <div class="row">
                 <div class="options col-12 text-center">
-                    <h1></h1>
+                    <h1 id="answerC-el"></h1>
                 </div>
             </div>
             <div class="row">
                 <div class="options col-12 text-center">
-                    <h1></h1>
+                    <h1 id="answerD-el"></h1>
                 </div>
             </div>
-
-
         </div>
 
         <!-- Answer Section / Footer -->
-        <div class="container-fluid answer-section">
+        <div class="container answer-section w-100 text-center">
             <div class="row">
-                <div class="col-12 spacer">
+                <div class="col-12 spacer answer-spacer">
 
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-6">
-                    <button data-value="a" id="a" data-value="a" class="ansr-btns nuetral" type="button">A </n></button>
+                    <button id="a" class="ansr-btns nuetral" type="button">A </n></button>
                 </div>
 
                 <div class="col-6">
@@ -117,11 +115,11 @@
 
             <div class="row">
                 <div class="col-6">
-                    <button id="c" class="ansr-btns correct" type="button">C</button>
+                    <button id="c" class="ansr-btns nuetral" type="button">C</button>
                 </div>
 
                 <div class="col-6">
-                    <button id="d" class="ansr-btns wrong" type="button">D</button>
+                    <button id="d" class="ansr-btns nuetral" type="button">D</button>
                 </div>
             </div>
             <div class="row">
@@ -136,6 +134,35 @@
             </div>
         </div>
 
+    </div>
+
+    <div id="score-screen" class="h-10 hide">
+        <div class="container screen text-center h-100">
+            <div class="score-content">
+                <div class="row">
+                    <div class="col-12 m-auto">
+                        <h1 id="score-label">Your Score</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 m-auto">
+                        <h3 id="score">1466</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 m-auto">
+                        <h1>Enter Your Initials:</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 m-auto">
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./script.js"></script>
