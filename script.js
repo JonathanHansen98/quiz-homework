@@ -151,7 +151,7 @@ submitBtn.addEventListener("click", function checkScore(event) {
     event.preventDefault();
     var initials = document.getElementById("initials").value
     var checkedScore = JSON.parse(localStorage.getItem("Scores"))
-    if (checkedScore === undefined) {
+    if (checkedScore === null) {
         var scores = []
         var playerScore = {}
         playerScore.name = initials
