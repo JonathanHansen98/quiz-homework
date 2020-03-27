@@ -50,6 +50,13 @@ h1, h2, h3, h5, p, button, a {
 .start-screen h1 {
   margin: 50px;
 }
+.code-btn{
+  padding-top: 30px;
+}
+
+#code-btn {
+  margin-top: 20px;
+}
 
 .start-btn, .code-btn {
   width: 300px;

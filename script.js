@@ -6,6 +6,8 @@ const scoreLabel = document.getElementById("score-label")
 const scoreEl = document.getElementById("score")
 const codeBtn = document.getElementById("code-btn")
 const startBtn = document.getElementById("start-btn");
+const form = document.getElementById("form")
+const submitBtn = document.getElementById("submit-btn")
 const aButton = document.getElementById("a");
 const bButton = document.getElementById("b");
 const cButton = document.getElementById("c");
@@ -65,14 +67,20 @@ var questions = [
 startBtn.addEventListener("click", function () {
     startScreen.classList.add("hide");
     quizScreen.classList.toggle("hide");
-    showQuestion();
     startTime();
+    showQuestion();
 });
+
+
 
 function startTime() {
     let timer = setInterval(() => {
         timerEl.innerHTML = "Time: " + time + "s";
-  
+        if (time <= 0 || questionIndex > questions.length - 1) {
+            endGame();
+            clearInterval(timer)
+            return time
+        }
         time--;
     }, 1000);
 };
@@ -80,6 +88,9 @@ function startTime() {
 
 
 function showQuestion() {
+    if (questionIndex > questions.length) {
+        endGame();
+    }
     if (questionIndex <= questions.length - 1) {
         questionEl.innerHTML = questions[questionIndex].question
         answerAel.innerHTML = questions[questionIndex].answerA
@@ -91,17 +102,15 @@ function showQuestion() {
         cButton.setAttribute("data-value", questions[questionIndex].answerC)
         dButton.setAttribute("data-value", questions[questionIndex].answerD)
     }
-    else{
-        endGame();
-    }
-}
 
+}
+// Add event listeners to buttons
 for (let index = 0; index < answerButtons.length; index++) {
     answerButtons[index].addEventListener('click', function (event) {
         checkAnswer(event);
     })
 }
-
+// Check click event and change button classes accordingly
 function checkAnswer(event) {
     if (event.target.dataset.value === questions[questionIndex].correct) {
         console.log("correct")
@@ -116,32 +125,16 @@ function checkAnswer(event) {
     }
     setTimeout(function () {
         resetButtons();
-        questionIndex++
-        // if (questionIndex > questions.length - 1) {
-        //     endGame();
-        // }
+        questionIndex++;
         showQuestion();
     }, 500)
 }
 
 function endGame() {
-    if (time < 0) {
-        timerEl.innerHTML = "Time: 0s";
-    }
-    else {
-        timerEl.innerHTML = "Time: " + time + "s";
-    }
+    scoreEl.innerHTML = time
     quizScreen.classList.toggle("hide")
     scoreScreen.classList.toggle("hide")
-    if (window.localStorage === undefined) {
-        let scores = []
-        localStorage.setItem("scores", JSON.stringify(scores))
-    }
-    else {
-        var scores = localStorage.getItem(JSON.parse(scores))
-    }
-    scores.push(time)
-    }
+}
 
 function resetButtons() {
     for (let index = 0; index < answerButtons.length; index++) {
@@ -151,3 +144,31 @@ function resetButtons() {
         answerButtons[index].classList.add("nuetral")
     }
 }
+
+
+
+submitBtn.addEventListener("click", function checkScore(event) {
+    event.preventDefault();
+    var initials = document.getElementById("initials").value
+    var checkedScore = JSON.parse(localStorage.getItem("Scores"))
+    if (checkedScore === undefined) {
+        var scores = []
+        var playerScore = {}
+        playerScore.name = initials
+        playerScore.score = time
+        scores.push(playerScore)
+        localStorage.setItem("Scores",JSON.stringify(scores))
+    }
+    else {
+        var scores = []
+        var playerScore = {}
+        playerScore.name = initials
+        playerScore.score = time
+        console.log(checkedScore)
+        checkedScore.push(playerScore)
+        localStorage.setItem("Scores",JSON.stringify(checkedScore))
+    }   
+     form.reset();
+
+})
+
