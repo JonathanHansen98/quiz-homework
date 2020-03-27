@@ -16,8 +16,7 @@ const answerBel = document.getElementById("answerB-el");
 const answerCel = document.getElementById("answerC-el");
 const answerDel = document.getElementById("answerD-el");
 const answerButtons = document.getElementsByClassName("ansr-btns");
-window.localStorage.getItem("score")
-var time = 90;
+var time = 30;
 var questionIndex = 0;
 
 var questions = [
@@ -63,9 +62,6 @@ var questions = [
     }
 ];
 
-
-var scores = [];
-
 startBtn.addEventListener("click", function () {
     startScreen.classList.add("hide");
     quizScreen.classList.toggle("hide");
@@ -73,36 +69,37 @@ startBtn.addEventListener("click", function () {
     startTime();
 });
 
-// codeBtn.addEventListener("click")
-
-for (let index = 0; index < answerButtons.length; index++) {
-    answerButtons[index].addEventListener('click', function (event) {
-        checkAnswer(event);
-    })
-}
-
 function startTime() {
     let timer = setInterval(() => {
-        timerEl.textContent = "Time: " + time + "s";
-        if (questionIndex > questions.length - 1 || time === 0) {
-            clearInterval(timer)
-        };
+        timerEl.innerHTML = "Time: " + time + "s";
+  
         time--;
     }, 1000);
 };
 
+
+
 function showQuestion() {
     if (questionIndex <= questions.length - 1) {
-        questionEl.textContent = questions[questionIndex].question
-        answerAel.textContent = questions[questionIndex].answerA
-        answerBel.textContent = questions[questionIndex].answerB
-        answerCel.textContent = questions[questionIndex].answerC
-        answerDel.textContent = questions[questionIndex].answerD
+        questionEl.innerHTML = questions[questionIndex].question
+        answerAel.innerHTML = questions[questionIndex].answerA
+        answerBel.innerHTML = questions[questionIndex].answerB
+        answerCel.innerHTML = questions[questionIndex].answerC
+        answerDel.innerHTML = questions[questionIndex].answerD
         aButton.setAttribute("data-value", questions[questionIndex].answerA)
         bButton.setAttribute("data-value", questions[questionIndex].answerB)
         cButton.setAttribute("data-value", questions[questionIndex].answerC)
         dButton.setAttribute("data-value", questions[questionIndex].answerD)
     }
+    else{
+        endGame();
+    }
+}
+
+for (let index = 0; index < answerButtons.length; index++) {
+    answerButtons[index].addEventListener('click', function (event) {
+        checkAnswer(event);
+    })
 }
 
 function checkAnswer(event) {
@@ -120,12 +117,31 @@ function checkAnswer(event) {
     setTimeout(function () {
         resetButtons();
         questionIndex++
-        if (questionIndex > questions.length - 1) {
-            endGame();
-        }
+        // if (questionIndex > questions.length - 1) {
+        //     endGame();
+        // }
         showQuestion();
     }, 500)
 }
+
+function endGame() {
+    if (time < 0) {
+        timerEl.innerHTML = "Time: 0s";
+    }
+    else {
+        timerEl.innerHTML = "Time: " + time + "s";
+    }
+    quizScreen.classList.toggle("hide")
+    scoreScreen.classList.toggle("hide")
+    if (window.localStorage === undefined) {
+        let scores = []
+        localStorage.setItem("scores", JSON.stringify(scores))
+    }
+    else {
+        var scores = localStorage.getItem(JSON.parse(scores))
+    }
+    scores.push(time)
+    }
 
 function resetButtons() {
     for (let index = 0; index < answerButtons.length; index++) {
@@ -134,10 +150,4 @@ function resetButtons() {
         answerButtons[index].classList.remove("wrong")
         answerButtons[index].classList.add("nuetral")
     }
-}
-
-function endGame() {
-    quizScreen.classList.toggle("hide")
-    scoreScreen.classList.toggle("hide")
-    // scores.push(time)
 }
