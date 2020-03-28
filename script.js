@@ -3,7 +3,9 @@ const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const scoreScreen = document.getElementById("score-screen");
 const scoreLabel = document.getElementById("score-label")
-const scoreEl = document.getElementById("score")
+const highscoreBtn = document.getElementById("highscore-btn")
+const leaderboardEl = document.getElementById("leaderboard")
+const scoreEl = document.getElementById("scores")
 const codeBtn = document.getElementById("code-btn")
 const startBtn = document.getElementById("start-btn");
 const form = document.getElementById("form")
@@ -71,7 +73,28 @@ startBtn.addEventListener("click", function () {
     showQuestion();
 });
 
+highscoreBtn.addEventListener("click", function () {
+    if (quizScreen.className !== "hide") {
+        alert("Finish your quiz!")
+    }
 
+    else if (leaderboardEl.className !== "hide") {
+        leaderboardEl.classList.toggle("hide")
+        startScreen.classList.toggle("hide")
+    }
+
+    else {
+        startScreen.classList.add("hide")
+        let checkedSCore = JSON.parse(localStorage.getItem("Scores"))
+        if (checkedSCore === null) {
+            scoreEl.innerHTML = "Take the quiz to get your first score!"
+        }
+        else {
+            addScore();
+        }
+        leaderboardEl.classList.toggle("hide")
+    }
+})
 
 function startTime() {
     let timer = setInterval(() => {
@@ -84,8 +107,6 @@ function startTime() {
         time--;
     }, 1000);
 };
-
-
 
 function showQuestion() {
     if (questionIndex > questions.length) {
@@ -102,14 +123,15 @@ function showQuestion() {
         cButton.setAttribute("data-value", questions[questionIndex].answerC)
         dButton.setAttribute("data-value", questions[questionIndex].answerD)
     }
-
 }
+
 // Add event listeners to buttons
 for (let index = 0; index < answerButtons.length; index++) {
     answerButtons[index].addEventListener('click', function (event) {
         checkAnswer(event);
     })
 }
+
 // Check click event and change button classes accordingly
 function checkAnswer(event) {
     if (event.target.dataset.value === questions[questionIndex].correct) {
@@ -131,9 +153,14 @@ function checkAnswer(event) {
 }
 
 function endGame() {
-    scoreEl.innerHTML = time
     quizScreen.classList.toggle("hide")
     scoreScreen.classList.toggle("hide")
+    if (time < 5) {
+        scoreLabel.innerHTML = "You could you better than that! Your score: " + time + "s"
+    }
+    else {
+        scoreLabel.innerHTML = "Out of this world! Your score: " + time + "s"
+    }
 }
 
 function resetButtons() {
@@ -145,8 +172,6 @@ function resetButtons() {
     }
 }
 
-
-
 submitBtn.addEventListener("click", function checkScore(event) {
     event.preventDefault();
     var initials = document.getElementById("initials").value
@@ -157,7 +182,7 @@ submitBtn.addEventListener("click", function checkScore(event) {
         playerScore.name = initials
         playerScore.score = time
         scores.push(playerScore)
-        localStorage.setItem("Scores",JSON.stringify(scores))
+        localStorage.setItem("Scores", JSON.stringify(scores))
     }
     else {
         var scores = []
@@ -166,9 +191,27 @@ submitBtn.addEventListener("click", function checkScore(event) {
         playerScore.score = time
         console.log(checkedScore)
         checkedScore.push(playerScore)
-        localStorage.setItem("Scores",JSON.stringify(checkedScore))
-    }   
-     form.reset();
-
+        localStorage.setItem("Scores", JSON.stringify(checkedScore))
+    }
+    form.reset();
+    addScore();
+    leaderboardEl.classList.toggle("hide")
 })
 
+function addScore() {
+    let leaderboard = JSON.parse(localStorage.getItem("Scores"))
+    console.log(leaderboard)
+    for (let index = 0; index < leaderboard.length; index++) {
+        var pScore = document.createElement("p")
+        pScore.classList.add("score")
+        pScore.innerHTML = leaderboard[index].name + ": " + leaderboard[index].score
+        var scoreRow = document.createElement("div")
+        var scoreCol = document.createElement("div")
+        scoreRow.classList.add("row")
+        scoreCol.classList.add("col-12")
+        scoreEl.prepend(scoreRow)
+        scoreRow.appendChild(scoreCol)
+        // scoreCol.appendChild(pName)
+        scoreCol.appendChild(pScore)
+    }
+}

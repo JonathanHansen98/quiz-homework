@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="row header">
             <div class="col-3">
-                <a class="btn btn-primary" href="#" role="button">Your Highscores</a>
+                <a id="highscore-btn" class="btn btn-primary" href="#" role="button">Your Highscores</a>
             </div>
             <div class="col-6 text-center">
                 <h2 class="">
@@ -38,7 +38,8 @@
 
 
     <!-- Start Section -->
-    <div id="start-screen" class="container text-center">
+    <div id="start-screen">
+        <div class="container text-center">
         <div class="row">
             <div class="col-12">
                 <div class="screen start-screen text-center">
@@ -53,12 +54,12 @@
                             <button type="button" id="start-btn" class="btn btn-primary start-btn">Start Game</button>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-primary code-btn"><span id="code-btn">View Code</span></a>
-                            <!-- <button onclick="window.location.href = 'google.com';" target="_blank" class="btn btn-primary code-btn">View Code</button> -->
-                        </div>
+                            <a href="https://github.com/JonathanHansen98/quiz-homework" target = "_blank" class="btn btn-primary code-btn"><span id="code-btn">View Code</span></a>
+                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
@@ -137,7 +138,7 @@
 
     </div>
 
-    <div id="score-screen" class="h-10 hide">
+    <div id="score-screen" class="hide">
         <div class="container screen text-center h-100">
             <div class="score-content">
                 <div class="row">
@@ -169,31 +170,22 @@
         </div>
     </div>
 
+<div id="leaderboard" class="hide">
+    <div class="container leaderboard">
+        <div class="row">
+            <div class="col-12">
+                <div class="screen text-center">
+                    <h3 class="">Leaderboards:</h3>
+                    <div id="scores">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="./script.js"></script>
-
-    <!-- submitBtn.addEventListener("click", function checkScore(event) {
-        event.preventDefault();
-        var initials = document.getElementById("initials").value
-        console.log("clicked")
-        console.log(initials)
-        form.reset();
-        var playerName = initials
-        console.log(playerName)
-        var scores = []
-        playerScore = {}
-        playerScore.name = playerName
-        playerScore.score = time
-        scores.push(playerScore)
-        console.log(scores)
-        var checkedScore = JSON.parse(localStorage.getItem("scores"))
-        if (checkedScore === undefined) {
-            JSON.stringify(localStorage.setItem(scores))
-        }
-        else {
-            JSON.stringify(localStorage.setItem(scores))
-        }
-    }) -->
-
 </body>
 
 </html>

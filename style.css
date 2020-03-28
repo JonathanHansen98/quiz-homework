@@ -42,7 +42,7 @@ h1, h2, h3, h5, p, button, a {
   position: relative;
 }
 
-.start-screen {
+.start-screen, #leaderboard {
   position: relative;
   top: 35%;
 }
@@ -64,6 +64,10 @@ h1, h2, h3, h5, p, button, a {
   font-size: 25px;
   background-color:  #4a99ff;
 
+}
+
+.leaderboard {
+  width: 500px;
 }
 
 .options {
