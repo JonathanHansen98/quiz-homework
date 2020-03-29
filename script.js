@@ -20,7 +20,7 @@ const answerBel = document.getElementById("answerB-el");
 const answerCel = document.getElementById("answerC-el");
 const answerDel = document.getElementById("answerD-el");
 const answerButtons = document.getElementsByClassName("ansr-btns");
-var time = 30;
+var time = 45;
 var questionIndex = 0;
 
 var questions = [
@@ -145,8 +145,8 @@ for (let index = 0; index < answerButtons.length; index++) {
 // Check click event and change button classes accordingly
 function checkAnswer(event) {
     if (event.target.dataset.value === questions[questionIndex].correct) {
-        console.log("correct")
         event.target.classList.toggle("correct")
+        time += 2
     }
     else {
         event.target.classList.toggle("wrong")
