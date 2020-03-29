@@ -22,6 +22,7 @@ const answerDel = document.getElementById("answerD-el");
 const answerButtons = document.getElementsByClassName("ansr-btns");
 var time = 45;
 var questionIndex = 0;
+var startGame = false
 
 var questions = [
     {
@@ -63,9 +64,50 @@ var questions = [
         answerC: "C. Nebula",
         answerD: "D. Black Hole",
         correct: "C. Nebula"
+    },
+    {
+        question: "The gravity on Mars is approximately _____ of that on Earth",
+        answerA: "A. One-third",
+        answerB: "B. One-tenth",
+        answerC: "C. One-half",
+        answerD: "D. One-sixth",
+        correct: "A. One-third"
+    },
+    {
+        question: "The Universe is approximately how old?",
+        answerA: "A. 1.7 Billion years",
+        answerB: "B. 13.7 Billion years",
+        answerC: "C. 1 Million years",
+        answerD: "D. 13.7 Million years",
+        correct: "B. 13.7 Billion years"
+    },
+    {
+        question: "What is Jupiters largest moon",
+        answerA: "A. Pluto",
+        answerB: "B. Ganymede",
+        answerC: "C. Europa",
+        answerD: "D. Leda",
+        correct: "B. Ganymede"
+    },
+    {
+        question: "During its maiden flight in 2010, the SpaceX cargo spacecraft, \"Dragon\", was carrying what special cargo?",
+        answerA: "A. Tesla Roadster",
+        answerB: "B. A crash test dummy",
+        answerC: "C. A wheel of cheese",
+        answerD: "D. A Boring Company Flamethrower",
+        correct: "C. A wheel of cheese"
+    },
+    {
+        question: "What was the the first animal to orbit the Earth??",
+        answerA: "A. A Rhesus Monkey",
+        answerB: "B. A Hamster",
+        answerC: "C. A Chimpanzee",
+        answerD: "D. A Dog",
+        correct: "D. A Dog"
     }
 ];
-var startGame = false
+
+
 
 startBtn.addEventListener("click", function () {
     startScreen.classList.add("hide");
@@ -83,11 +125,6 @@ highscoreBtn.addEventListener("click", function () {
         leaderboardEl.classList.toggle("hide")
         startScreen.classList.toggle("hide")
     }
-
-    // else if (scoreScreen.className !== "hide") {
-    //     highscoreBtn.classList.add("hide")
-    // }
-
     else {
         startScreen.classList.add("hide")
         let checkedSCore = JSON.parse(localStorage.getItem("Scores"))
@@ -166,7 +203,7 @@ function endGame() {
     quizScreen.classList.toggle("hide")
     scoreScreen.classList.toggle("hide")
     highscoreBtn.classList.add("hide")
-    if (time < 5) {
+    if (time < 15) {
         scoreLabel.innerHTML = "You could you better than that! Your score: " + time + "s"
     }
     else {
@@ -214,14 +251,13 @@ function addScore() {
     for (let index = 0; index < leaderboard.length; index++) {
         var pScore = document.createElement("p")
         pScore.classList.add("score")
-        pScore.innerHTML = leaderboard[index].name + ": " + leaderboard[index].score
+        pScore.innerHTML = leaderboard[index].name + ": " + leaderboard[index].score + "s"
         var scoreRow = document.createElement("div")
         var scoreCol = document.createElement("div")
         scoreRow.classList.add("row")
         scoreCol.classList.add("col-12")
         scoreEl.prepend(scoreRow)
         scoreRow.appendChild(scoreCol)
-        // scoreCol.appendChild(pName)
         scoreCol.appendChild(pScore)
     }
 }

@@ -51,10 +51,7 @@ h1, h2, h3, h5, p, button, a {
   margin: 50px;
 }
 .code-btn{
-  padding-top: 30px;
-}
-
-#code-btn {
+  padding-top: 30px; 
   margin-top: 20px;
 }
 
@@ -66,6 +63,15 @@ h1, h2, h3, h5, p, button, a {
 
 }
 
+@media only screen and (max-width: 500px) {
+  .start-btn, .code-btn {width: 150px; height: 60px;}
+   .start-btn {font-size: 12pt;}
+   .code-btn {font-size: 12pt;}
+   .code-btn {margin-top: 5px;}
+   .code-btn {margin-bottom: 5px;}
+   .code-btn {padding-top: 14px;}
+   .code-btn {padding-bottom: 12px;}
+}
 .leaderboard {
   width: 500px;
 }
