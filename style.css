@@ -131,3 +131,13 @@ h1, h2, h3, h5, p, button, a {
 .score-content h1 {
   margin-top: 0px;
 }
+
+#initials {
+  height: 30px;
+  border-radius: 5px;
+  /* border: solid 1px black; */
+}
+
+#scores p {
+  font-size: 16pt;
+}

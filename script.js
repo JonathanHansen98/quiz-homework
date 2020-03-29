@@ -65,13 +65,14 @@ var questions = [
         correct: "C. Nebula"
     }
 ];
+var startGame = false
 
 startBtn.addEventListener("click", function () {
     startScreen.classList.add("hide");
-    quizScreen.classList.toggle("hide");
+    startGame = true
     startTime();
-    showQuestion();
 });
+
 
 highscoreBtn.addEventListener("click", function () {
     if (quizScreen.className !== "hide") {
@@ -82,6 +83,10 @@ highscoreBtn.addEventListener("click", function () {
         leaderboardEl.classList.toggle("hide")
         startScreen.classList.toggle("hide")
     }
+
+    // else if (scoreScreen.className !== "hide") {
+    //     highscoreBtn.classList.add("hide")
+    // }
 
     else {
         startScreen.classList.add("hide")
@@ -98,6 +103,11 @@ highscoreBtn.addEventListener("click", function () {
 
 function startTime() {
     let timer = setInterval(() => {
+        if (startGame === true) {
+            quizScreen.classList.toggle("hide");
+            showQuestion()
+            startGame = false
+        };
         timerEl.innerHTML = "Time: " + time + "s";
         if (time <= 0 || questionIndex > questions.length - 1) {
             endGame();
@@ -155,6 +165,7 @@ function checkAnswer(event) {
 function endGame() {
     quizScreen.classList.toggle("hide")
     scoreScreen.classList.toggle("hide")
+    highscoreBtn.classList.add("hide")
     if (time < 5) {
         scoreLabel.innerHTML = "You could you better than that! Your score: " + time + "s"
     }
