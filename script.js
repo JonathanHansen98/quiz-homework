@@ -211,7 +211,6 @@ submitBtn.addEventListener("click", function checkScore(event) {
 
 function addScore() {
     let leaderboard = JSON.parse(localStorage.getItem("Scores"))
-    console.log(leaderboard)
     for (let index = 0; index < leaderboard.length; index++) {
         var pScore = document.createElement("p")
         pScore.classList.add("score")
